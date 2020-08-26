@@ -12,12 +12,8 @@ object pepita {
 	
 	method volar(unosKilometros) {
 		if (self.puedeVolar(unosKilometros)) {
-			energia = energia - self.energiaQueGastariaAlVolar(unosKilometros)
+			energia = energia - self.estadoAnimo().energiaQueGastariaAlVolar(unosKilometros)
 		}
-	}
-	
-	method energiaQueGastariaAlVolar(unosKilometros) {
-		return unosKilometros / 8 + 10
 	}
 	
 	method volarA(unaCiudad) {
@@ -29,9 +25,62 @@ object pepita {
 	}
 	
 	method puedeVolar(unosKilometros) {
-		return self.energia() > self.energiaQueGastariaAlVolar(unosKilometros)
+		return self.energia() > self.estadoAnimo().energiaQueGastariaAlVolar(unosKilometros)
+	}
+	
+	method hacerDeseo() {
+		self.estadoAnimo().cumplirDeseo(self)
+	}
+	
+	method estadoAnimo() {
+		if (self.estaEuforica()) {
+			return euforica
+		} else if (self.estaDebil()) {
+			return debil
+		} else {
+			return normal
+		}
+	}
+	
+	method estaEuforica() {
+		return self.energia() > 500 && self.energia().even()
+	}
+	
+	method estaDebil() {
+		return self.energia() < 50
 	}
 }
+
+object euforica {	
+	method cumplirDeseo(unaGolondrina) {
+		unaGolondrina.volar(5)
+	}
+		
+	method energiaQueGastariaAlVolar(unosKilometros) {
+		return unosKilometros / 5 + 10
+	}
+}
+
+object debil {
+	method cumplirDeseo(unaGolondrina) {
+		unaGolondrina.comer(500)
+	}
+		
+	method energiaQueGastariaAlVolar(unosKilometros) {
+		return unosKilometros / 8 + 50
+	}
+}
+
+object normal {
+	method cumplirDeseo(unaGolondrina) {
+		// Es un método vacío porque no hace nada
+	}
+		
+	method energiaQueGastariaAlVolar(unosKilometros) {
+		return unosKilometros / 8 + 10
+	}
+}
+
 
 object buenosAires {
 
