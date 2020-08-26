@@ -1,0 +1,38 @@
+import pepita.*
+
+describe "Pepita Test" {
+
+	test "pepita nace con 100 joules de energia" {
+		assert.equals(100, pepita.energia())
+	}
+
+	test "pepita no nace debil" {
+		assert.notThat(pepita.estaDebil())
+	}
+	
+	test "cuando pepita come aumenta su energia correctamente" {
+		const energiaAntesDeComer = pepita.energia()
+		pepita.comer(10)
+		assert.equals(energiaAntesDeComer + 20, pepita.energia())
+	}
+	
+	test "Cuando pepita tiene mas de 500 de energia y su energia es par está euforica" {
+		pepita.energia(502)
+		assert.that(pepita.estaEuforica())
+	}
+	
+	test "Cuando pepita tiene mas de 500 de energia y su energia es impar not está euforica" {
+		pepita.energia(501)
+		assert.notThat(pepita.estaEuforica())
+	}	
+
+	test "Cuando pepita tiene menos de 500 de energia y su energia es par not está euforica" {
+		pepita.energia(500)
+		assert.notThat(pepita.estaEuforica())
+	}	
+
+	test "Cuando pepita tiene menos de 500 de energia y su energia es impar not está euforica" {
+		pepita.energia(499)
+		assert.notThat(pepita.estaEuforica())
+	}	
+}

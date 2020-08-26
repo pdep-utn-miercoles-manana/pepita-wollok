@@ -1,11 +1,8 @@
 object pepita {
-	var energia = 100
+	var property energia = 100
+	
 	var ciudadActual = buenosAires
 	
-	method energia() {
-		return energia 
- 	}
-
 	method comer(gramosDeAlpiste) {
 		energia = energia + 2 * gramosDeAlpiste
 	}
