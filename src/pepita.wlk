@@ -11,7 +11,9 @@ object pepita {
 	}
 	
 	method volar(unosKilometros) {
-		energia = energia - self.energiaQueGastariaAlVolar(unosKilometros)
+		if (self.puedeVolar(unosKilometros)) {
+			energia = energia - self.energiaQueGastariaAlVolar(unosKilometros)
+		}
 	}
 	
 	method energiaQueGastariaAlVolar(unosKilometros) {
@@ -19,14 +21,15 @@ object pepita {
 	}
 	
 	method volarA(unaCiudad) {
-		if (self.puedeVolar(unaCiudad)) {
-			self.volar(ciudadActual.distanciaA(unaCiudad))
+		const unosKilometros = ciudadActual.distanciaA(unaCiudad)
+		if (self.puedeVolar(unosKilometros)) {
+			self.volar(unosKilometros)
 			ciudadActual = unaCiudad
 		}
 	}
 	
-	method puedeVolar(unaCiudad) {
-		return self.energia() > self.energiaQueGastariaAlVolar(ciudadActual.distanciaA(unaCiudad))
+	method puedeVolar(unosKilometros) {
+		return self.energia() > self.energiaQueGastariaAlVolar(unosKilometros)
 	}
 }
 
