@@ -14,6 +14,7 @@ object carlos {
 		return aves.size()
 	}
 	
+	//carlos también quiere poder llamar a cualquiera de sus aves con un silbido
 	method silbar(){
 		return aves.anyOne()
 	}
@@ -24,14 +25,16 @@ object carlos {
 		return aves.all({ave => ave.tieneSuficienteEnergia(100)})
 	}
 	
-//	method estaListoParaCompetir2(){
-//		return aves.all({ave => ave.energia() > 100})
-//	}
+	method estaListoParaCompetir2(){
+		return aves.all({ave => ave.energia() > 100})
+	}
 
+	//carlos quiere ver cómo están sus aves. entonces recuerda map de Haskell, y les dice que que le digan su estado de ánimo
 	method estadosDeAnimoDelEquipo(){
 		return aves.map({ave => ave.estadoAnimo()})
 	}
 	
+// 	MAL!!		
 //	method estadosDeAnimoDelEquipo2(){
 //		return aves.forEach({ave => ave.estadoAnimo()})
 //	}
