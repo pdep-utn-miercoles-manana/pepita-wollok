@@ -4,7 +4,7 @@ import aves.*
 
 object carlos {
 	
-	var aves = #{pepita} 
+	const property aves = #{pepita}
 	
 	method agregarAve(ave){
 		aves.add(ave)
@@ -40,8 +40,18 @@ object carlos {
 //	}
 
 	method alimentarEquipo(gramosAlpiste){
+
+//		const bloque = object {
+//			method apply(ave){
+//				ave.comer(gramosAlpiste)
+//			}
+//		}
+		
+		// Es lo mismo que hacer
 		const bloque = {ave => ave.comer(gramosAlpiste)}
+		
 		aves.forEach(bloque)
+		
 	}
 	
 	//MAL!!!!!!

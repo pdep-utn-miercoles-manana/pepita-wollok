@@ -1,0 +1,53 @@
+import entrenador.*
+import aves.*
+
+describe "Entrenador test" {
+	test "Carlos arranca solo con pepita" {
+		assert.equals(#{pepita}, carlos.aves())
+	}
+	
+	test "Carlos agrega a papo correctamente a su equipo" {
+		carlos.agregarAve(papo)
+		assert.that(carlos.aves().contains(papo))
+	}
+	
+	test "Carlos no esta listo para competir ya que pepita arranca con 100 de energia"{
+		assert.notThat(carlos.estaListoParaCompetir())
+	}
+	
+	test "Carlos esta listo para competir ya que tiene a pepita y papo con mas de 100 de energia"{
+		pepita.energia(101)
+		carlos.agregarAve(papo)
+		
+		assert.that(carlos.estaListoParaCompetir())
+	}
+	
+	test "Pepita aumenta su energia luego de que carlos alimanta al equipo"{
+		
+// 		Mas acoplados a la implementacion de 'comer' en las aves
+//		const energiaAnterior = pepita.energia()
+//		
+//		carlos.alimentarEquipo(50)
+//		
+//		assert.equals(pepita.energia(), energiaAnterior + 100)
+
+		const energiaAnterior = pepita.energia()
+		
+		carlos.alimentarEquipo(50)
+		
+		assert.that(pepita.energia() > energiaAnterior)
+	}
+	
+	test "Todos los intergantes del equipo aumentan su energia luego de que el equipo coma"{
+		
+		carlos.agregarAve(pepito)
+		
+		const energiaAnteriorPepita = pepita.energia()
+		const energiaAnteriorPepito = pepito.energia()
+		
+		carlos.alimentarEquipo(50)
+		
+		assert.that(pepita.energia() > energiaAnteriorPepita && pepito.energia() > energiaAnteriorPepito)
+	}	
+	
+}
