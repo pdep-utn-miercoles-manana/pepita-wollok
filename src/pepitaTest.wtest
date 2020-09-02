@@ -1,4 +1,4 @@
-import pepita.*
+import aves.*
 
 describe "Pepita Test" {
 
