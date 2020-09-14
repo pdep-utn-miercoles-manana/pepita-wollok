@@ -1,7 +1,28 @@
 import entrenador.*
-import aves.*
+import Golondrina.*
+import Ciudad.*
 
 describe "Entrenador test" {
+	
+	var mdp
+	var buenosAires
+	var dolores
+	var pepita
+	var pepito
+	var papo
+
+	fixture {
+		mdp = new Ciudad(kilometroEnRuta = 400)
+		buenosAires = new Ciudad(kilometroEnRuta = 0)
+		dolores = new Ciudad(kilometroEnRuta = 200)
+		
+		pepita = new Golondrina(energia = 100, ciudadActual = buenosAires, diarioDeViaje = [mdp, buenosAires])
+		pepito = new Golondrina(energia =  50, ciudadActual = dolores, diarioDeViaje = [mdp, buenosAires, dolores])
+		papo   = new Golondrina(energia = 200, ciudadActual = mdp, diarioDeViaje = [mdp])
+		
+		carlos.agregarAve(pepita)
+	}
+	
 	test "Carlos arranca solo con pepita" {
 		assert.equals(#{pepita}, carlos.aves())
 	}
@@ -48,6 +69,10 @@ describe "Entrenador test" {
 		carlos.alimentarEquipo(50)
 		
 		assert.that(pepita.energia() > energiaAnteriorPepita && pepito.energia() > energiaAnteriorPepito)
-	}	
+	}
+	
+	test "pepita arranca en buenos aires" {
+		assert.equals(buenosAires, pepita.ciudadActual())
+	}
 	
 }

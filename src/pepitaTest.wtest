@@ -1,19 +1,30 @@
-import aves.*
+import Golondrina.*
+import Ciudad.*
 
 describe "Pepita Test" {
 
+	var mdp
+	var buenosAires
+	var pepita
+
+	fixture {
+		mdp = new Ciudad(kilometroEnRuta = 400)
+		buenosAires = new Ciudad(kilometroEnRuta = 0)
+		pepita = new Golondrina(energia = 100, ciudadActual = buenosAires, diarioDeViaje = [mdp, buenosAires])
+	}
+
+	test "cuando pepita come aumenta su energia correctamente" {
+		const energiaAntesDeComer = pepita.energia()
+		pepita.comer(10)
+		assert.equals(energiaAntesDeComer + 20, pepita.energia())
+	}
+	
 	test "pepita nace con 100 joules de energia" {
 		assert.equals(100, pepita.energia())
 	}
 
 	test "pepita no nace debil" {
 		assert.notThat(pepita.estaDebil())
-	}
-	
-	test "cuando pepita come aumenta su energia correctamente" {
-		const energiaAntesDeComer = pepita.energia()
-		pepita.comer(10)
-		assert.equals(energiaAntesDeComer + 20, pepita.energia())
 	}
 	
 	test "Cuando pepita tiene mas de 500 de energia y su energia es par está euforica" {

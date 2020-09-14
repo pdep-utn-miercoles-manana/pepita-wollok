@@ -1,11 +1,11 @@
-import aves.*
+import Golondrina.*
 
 //KISS - Keep it simple stupid
 
 object carlos {
 	
-	const property aves = #{pepita}
-	
+	const property aves = #{}
+		
 	method agregarAve(ave){
 		aves.add(ave)
 	}
